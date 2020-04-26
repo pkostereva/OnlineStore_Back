@@ -1,0 +1,14 @@
+D:\github\DevEducation\HW_Kostereva\OnlineStore_Back\OnlineStore_Back.Repository\bin\Debug\netcoreapp3.1\OnlineStoreBack.Repository.deps.json
+D:\github\DevEducation\HW_Kostereva\OnlineStore_Back\OnlineStore_Back.Repository\bin\Debug\netcoreapp3.1\OnlineStoreBack.Repository.dll
+D:\github\DevEducation\HW_Kostereva\OnlineStore_Back\OnlineStore_Back.Repository\bin\Debug\netcoreapp3.1\OnlineStoreBack.Repository.pdb
+D:\github\DevEducation\HW_Kostereva\OnlineStore_Back\OnlineStore_Back.Repository\bin\Debug\netcoreapp3.1\OnlineStoreBack.Core.dll
+D:\github\DevEducation\HW_Kostereva\OnlineStore_Back\OnlineStore_Back.Repository\bin\Debug\netcoreapp3.1\OnlineStoreBack.DB.dll
+D:\github\DevEducation\HW_Kostereva\OnlineStore_Back\OnlineStore_Back.Repository\bin\Debug\netcoreapp3.1\OnlineStoreBack.DB.pdb
+D:\github\DevEducation\HW_Kostereva\OnlineStore_Back\OnlineStore_Back.Repository\bin\Debug\netcoreapp3.1\OnlineStoreBack.Core.pdb
+D:\github\DevEducation\HW_Kostereva\OnlineStore_Back\OnlineStore_Back.Repository\obj\Debug\netcoreapp3.1\OnlineStoreBack.Repository.csprojAssemblyReference.cache
+D:\github\DevEducation\HW_Kostereva\OnlineStore_Back\OnlineStore_Back.Repository\obj\Debug\netcoreapp3.1\OnlineStoreBack.Repository.csproj.CoreCompileInputs.cache
+D:\github\DevEducation\HW_Kostereva\OnlineStore_Back\OnlineStore_Back.Repository\obj\Debug\netcoreapp3.1\OnlineStoreBack.Repository.AssemblyInfoInputs.cache
+D:\github\DevEducation\HW_Kostereva\OnlineStore_Back\OnlineStore_Back.Repository\obj\Debug\netcoreapp3.1\OnlineStoreBack.Repository.AssemblyInfo.cs
+D:\github\DevEducation\HW_Kostereva\OnlineStore_Back\OnlineStore_Back.Repository\obj\Debug\netcoreapp3.1\OnlineStoreBack.Repository.csproj.CopyComplete
+D:\github\DevEducation\HW_Kostereva\OnlineStore_Back\OnlineStore_Back.Repository\obj\Debug\netcoreapp3.1\OnlineStoreBack.Repository.dll
+D:\github\DevEducation\HW_Kostereva\OnlineStore_Back\OnlineStore_Back.Repository\obj\Debug\netcoreapp3.1\OnlineStoreBack.Repository.pdb

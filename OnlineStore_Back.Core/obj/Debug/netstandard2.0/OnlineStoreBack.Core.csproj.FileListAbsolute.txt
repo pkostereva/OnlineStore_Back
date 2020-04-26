@@ -1,0 +1,9 @@
+D:\github\DevEducation\HW_Kostereva\OnlineStore_Back\OnlineStore_Back.Core\bin\Debug\netstandard2.0\OnlineStoreBack.Core.deps.json
+D:\github\DevEducation\HW_Kostereva\OnlineStore_Back\OnlineStore_Back.Core\bin\Debug\netstandard2.0\OnlineStoreBack.Core.dll
+D:\github\DevEducation\HW_Kostereva\OnlineStore_Back\OnlineStore_Back.Core\bin\Debug\netstandard2.0\OnlineStoreBack.Core.pdb
+D:\github\DevEducation\HW_Kostereva\OnlineStore_Back\OnlineStore_Back.Core\obj\Debug\netstandard2.0\OnlineStoreBack.Core.csprojAssemblyReference.cache
+D:\github\DevEducation\HW_Kostereva\OnlineStore_Back\OnlineStore_Back.Core\obj\Debug\netstandard2.0\OnlineStoreBack.Core.csproj.CoreCompileInputs.cache
+D:\github\DevEducation\HW_Kostereva\OnlineStore_Back\OnlineStore_Back.Core\obj\Debug\netstandard2.0\OnlineStoreBack.Core.AssemblyInfoInputs.cache
+D:\github\DevEducation\HW_Kostereva\OnlineStore_Back\OnlineStore_Back.Core\obj\Debug\netstandard2.0\OnlineStoreBack.Core.AssemblyInfo.cs
+D:\github\DevEducation\HW_Kostereva\OnlineStore_Back\OnlineStore_Back.Core\obj\Debug\netstandard2.0\OnlineStoreBack.Core.dll
+D:\github\DevEducation\HW_Kostereva\OnlineStore_Back\OnlineStore_Back.Core\obj\Debug\netstandard2.0\OnlineStoreBack.Core.pdb
