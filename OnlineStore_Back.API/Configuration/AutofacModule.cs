@@ -1,16 +1,18 @@
 ﻿using Autofac;
-using OnlineStore_Back.API.Controllers;
-using OnlineStore_Back.DB.Storages;
-using OnlineStore_Back.Repository;
+using OnlineStoreBack.API.Controllers;
+using OnlineStoreBack.DB.Storages;
+using OnlineStoreBack.Repository;
 
-namespace OnlineStore_Back.API.Configuration
+namespace OnlineStoreBack.API.Configuration
 {
     public class AutofacModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<ProductStorage>().As<IProductStorage>();
+            builder.RegisterType<OrderStorage>().As<IOrderStorage>();
             builder.RegisterType<ProductRepository>().As<IProductRepository>();
+            builder.RegisterType<OrderRepository>().As<IOrderRepository>();
             builder.RegisterType<ProductController>().As<IProductController>();
             builder.RegisterType<ConfigurationOptions>().As<IConfigurationOptions>();
         }

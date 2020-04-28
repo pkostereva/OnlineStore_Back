@@ -1,12 +1,14 @@
-﻿using OnlineStore_Back.DB.Models;
+﻿using OnlineStoreBack.DB.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace OnlineStore_Back.DB.Storages
+namespace OnlineStoreBack.DB.Storages
 {
     public interface IProductStorage
     {
         ValueTask<List<Product>> ProductsGetAll();
+
+        ValueTask<City> CityGetById(long id);
         void TransactionCommit();
         void TransactionStart();
         void TransactioRollBack();

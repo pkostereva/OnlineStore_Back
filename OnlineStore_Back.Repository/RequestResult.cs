@@ -1,4 +1,4 @@
-﻿namespace OnlineStore_Back.Repository
+﻿namespace OnlineStoreBack.Repository
 {
     public class RequestResult<T>
     {

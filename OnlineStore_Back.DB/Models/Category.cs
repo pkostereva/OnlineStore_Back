@@ -1,5 +1,5 @@
 ﻿
-namespace OnlineStore_Back.DB.Models
+namespace OnlineStoreBack.DB.Models
 {
     public class Category
     {

@@ -510,3 +510,43 @@ MigrationBackup/
 # Backup folder for Package Reference Convert tool in Visual Studio 2017
 
 # End of https://www.gitignore.io/api/csharp,visualstudio
+.vs/OnlineStore_Back/v16/.suo
+.vs/OnlineStore_Back/v16/.suo
+OnlineStore_Back.API/bin/Debug/netcoreapp3.1/OnlineStoreBack.API.dll
+OnlineStore_Back.API/bin/Debug/netcoreapp3.1/OnlineStoreBack.API.pdb
+OnlineStore_Back.API/bin/Debug/netcoreapp3.1/OnlineStoreBack.Core.dll
+OnlineStore_Back.API/bin/Debug/netcoreapp3.1/OnlineStoreBack.Core.pdb
+OnlineStore_Back.API/bin/Debug/netcoreapp3.1/OnlineStoreBack.DB.dll
+OnlineStore_Back.API/bin/Debug/netcoreapp3.1/OnlineStoreBack.DB.pdb
+.vs/OnlineStore_Back/v16/.suo
+OnlineStore_Back.API/bin/Debug/netcoreapp3.1/OnlineStoreBack.Repository.pdb
+OnlineStore_Back.API/bin/Debug/netcoreapp3.1/OnlineStoreBack.Repository.dll
+OnlineStore_Back.API/obj/Debug/netcoreapp3.1/OnlineStoreBack.API.csproj.CoreCompileInputs.cache
+OnlineStore_Back.API/obj/Debug/netcoreapp3.1/OnlineStoreBack.API.csprojAssemblyReference.cache
+OnlineStore_Back.API/obj/Debug/netcoreapp3.1/OnlineStoreBack.API.dll
+OnlineStore_Back.API/obj/Debug/netcoreapp3.1/OnlineStoreBack.API.pdb
+OnlineStore_Back.Core/bin/Debug/netstandard2.0/OnlineStoreBack.Core.pdb
+OnlineStore_Back.Core/bin/Debug/netstandard2.0/OnlineStoreBack.Core.dll
+OnlineStore_Back.Core/obj/Debug/netstandard2.0/OnlineStoreBack.Core.csproj.CoreCompileInputs.cache
+OnlineStore_Back.Core/obj/Debug/netstandard2.0/OnlineStoreBack.Core.csproj.FileListAbsolute.txt
+OnlineStore_Back.Core/obj/Debug/netstandard2.0/OnlineStoreBack.Core.csprojAssemblyReference.cache
+OnlineStore_Back.Core/obj/Debug/netstandard2.0/OnlineStoreBack.Core.dll
+OnlineStore_Back.Core/obj/Debug/netstandard2.0/OnlineStoreBack.Core.pdb
+OnlineStore_Back.DB/bin/Debug/netcoreapp3.1/OnlineStoreBack.Core.dll
+OnlineStore_Back.DB/bin/Debug/netcoreapp3.1/OnlineStoreBack.Core.pdb
+OnlineStore_Back.DB/bin/Debug/netcoreapp3.1/OnlineStoreBack.DB.dll
+OnlineStore_Back.DB/bin/Debug/netcoreapp3.1/OnlineStoreBack.DB.pdb
+OnlineStore_Back.DB/obj/Debug/netcoreapp3.1/OnlineStoreBack.DB.csproj.CoreCompileInputs.cache
+OnlineStore_Back.DB/obj/Debug/netcoreapp3.1/OnlineStoreBack.DB.csprojAssemblyReference.cache
+OnlineStore_Back.DB/obj/Debug/netcoreapp3.1/OnlineStoreBack.DB.dll
+OnlineStore_Back.DB/obj/Debug/netcoreapp3.1/OnlineStoreBack.DB.pdb
+OnlineStore_Back.Repository/bin/Debug/netcoreapp3.1/OnlineStoreBack.Core.dll
+OnlineStore_Back.Repository/bin/Debug/netcoreapp3.1/OnlineStoreBack.Core.pdb
+OnlineStore_Back.Repository/bin/Debug/netcoreapp3.1/OnlineStoreBack.DB.dll
+OnlineStore_Back.Repository/bin/Debug/netcoreapp3.1/OnlineStoreBack.DB.pdb
+OnlineStore_Back.Repository/bin/Debug/netcoreapp3.1/OnlineStoreBack.Repository.dll
+OnlineStore_Back.Repository/bin/Debug/netcoreapp3.1/OnlineStoreBack.Repository.pdb
+OnlineStore_Back.Repository/obj/Debug/netcoreapp3.1/OnlineStoreBack.Repository.csproj.CoreCompileInputs.cache
+OnlineStore_Back.Repository/obj/Debug/netcoreapp3.1/OnlineStoreBack.Repository.csprojAssemblyReference.cache
+OnlineStore_Back.Repository/obj/Debug/netcoreapp3.1/OnlineStoreBack.Repository.dll
+OnlineStore_Back.Repository/obj/Debug/netcoreapp3.1/OnlineStoreBack.Repository.pdb

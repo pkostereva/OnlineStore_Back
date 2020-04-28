@@ -1,14 +1,14 @@
 ﻿using Dapper;
 using Microsoft.Extensions.Options;
-using OnlineStore_Back.API.Configuration;
-using OnlineStore_Back.DB.Models;
+using OnlineStoreBack.API.Configuration;
+using OnlineStoreBack.DB.Models;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace OnlineStore_Back.DB.Storages
+namespace OnlineStoreBack.DB.Storages
 {
     public class ProductStorage : IProductStorage
     {
@@ -43,6 +43,7 @@ namespace OnlineStore_Back.DB.Storages
         internal static class SpName
         {
             public const string ProductsGetAll = "Products_SelectAll";
+            public const string CityGetById = "City_SelectById";
         }
 
         public async ValueTask<List<Product>> ProductsGetAll()
@@ -58,10 +59,27 @@ namespace OnlineStore_Back.DB.Storages
                         return newProduct;
                     },
                     param: null,
-                    transaction: transaction,
+                    //transaction: transaction,
                     commandType: CommandType.StoredProcedure,
                     splitOn: "Id");
                 return result.ToList();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async ValueTask<City> CityGetById(long id)
+        {
+            try
+            {
+                var result = await connection.QueryAsync<City>(
+                    SpName.CityGetById,
+                    param: new { id },
+                    //transaction: transaction,
+                    commandType: CommandType.StoredProcedure);
+                return result.FirstOrDefault();
             }
             catch (SqlException ex)
             {

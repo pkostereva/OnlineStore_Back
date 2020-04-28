@@ -19,9 +19,5 @@
     <ProjectReference Include="..\OnlineStore_Back.Repository\OnlineStoreBack.Repository.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\InputModels\" />
-  </ItemGroup>
-
 
 </Project>

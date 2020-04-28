@@ -1,10 +1,11 @@
-﻿using OnlineStore_Back.DB.Models;
-using OnlineStore_Back.DB.Storages;
+﻿using OnlineStoreBack.DB.Storages;
+using OnlineStoreBack.DB.Models;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using OnlineStoreBack.Repository;
 
-namespace OnlineStore_Back.Repository
+namespace OnlineStoreBack.Repository
 {
     public class ProductRepository : IProductRepository
     {
@@ -21,6 +22,21 @@ namespace OnlineStore_Back.Repository
             try
             {
                 result.RequestData = await _productStorage.ProductsGetAll();
+                result.IsOkay = true;
+            }
+            catch (Exception ex)
+            {
+                result.ExMessage = ex.Message;
+            }
+            return result;
+        }
+
+        public async ValueTask<RequestResult<City>> GetCityById(long id)
+        {
+            var result = new RequestResult<City>();
+            try
+            {
+                result.RequestData = await _productStorage.CityGetById(id);
                 result.IsOkay = true;
             }
             catch (Exception ex)

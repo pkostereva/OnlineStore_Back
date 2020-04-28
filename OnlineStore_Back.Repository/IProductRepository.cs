@@ -1,11 +1,12 @@
-﻿using OnlineStore_Back.DB.Models;
+﻿using OnlineStoreBack.DB.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace OnlineStore_Back.Repository
+namespace OnlineStoreBack.Repository
 {
     public interface IProductRepository
     {
         ValueTask<RequestResult<List<Product>>> GetAllProducts();
+        ValueTask<RequestResult<City>> GetCityById(long id);
     }
 }

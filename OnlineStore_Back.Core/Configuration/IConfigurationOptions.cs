@@ -1,4 +1,4 @@
-﻿namespace OnlineStore_Back.API.Configuration
+﻿namespace OnlineStoreBack.API.Configuration
 {
     public interface IConfigurationOptions
     {
