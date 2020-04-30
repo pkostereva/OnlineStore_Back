@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "4x2UcCY1cF5UTrP7HWL6veQuvetIoFH67u/1em9gUZ1F41dNljgHdbPIm9bRuHl9H5h31wOuiPyd10qMerJEkA==",
+  "dgSpecHash": "pza1JrLkMCN4i9eIfplPbtKcylLkPFvs1LByXfrX28tMkCsPOd4dci+HIBQ3TXSqmB5c3aNsHHfgLlLEzl9smQ==",
   "success": true,
   "projectFilePath": "D:\\github\\DevEducation\\HW_Kostereva\\OnlineStore_Back\\OnlineStore_Back.Repository\\OnlineStoreBack.Repository.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,7 @@
     "C:\\Users\\pkost\\.nuget\\packages\\microsoft.extensions.primitives\\3.1.3\\microsoft.extensions.primitives.3.1.3.nupkg.sha512",
     "C:\\Users\\pkost\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\pkost\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
+    "C:\\Users\\pkost\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\pkost\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.7.0\\runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",
     "C:\\Users\\pkost\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\pkost\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",

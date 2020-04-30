@@ -13,7 +13,7 @@ namespace OnlineStore_Back.API.Configuration
             CreateMap<City, CityOutputModel>();
 
             CreateMap<Product, ProductOutputModel>()
-                .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name))
+                //.ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name))
                 .ForMember(dest => dest.SubCategoryName, opt => opt.MapFrom(src => src.Category.Name));
 
             //CreateMap<Order_ProductInputModel, Order_Product>()

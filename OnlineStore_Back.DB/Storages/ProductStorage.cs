@@ -28,6 +28,15 @@ namespace OnlineStoreBack.DB.Storages
             transaction = this.connection.BeginTransaction();
         }
 
+
+        internal static class SpName
+        {
+            public const string ProductsGetAll = "Products_SelectAll";
+            public const string CityGetById = "City_SelectById";
+            public const string NobodyBought = "NobodyBuy";
+        }
+
+
         public void TransactionCommit()
         {
             this.transaction?.Commit();
@@ -38,12 +47,6 @@ namespace OnlineStoreBack.DB.Storages
         {
             this.transaction?.Rollback();
             connection?.Close();
-        }
-
-        internal static class SpName
-        {
-            public const string ProductsGetAll = "Products_SelectAll";
-            public const string CityGetById = "City_SelectById";
         }
 
         public async ValueTask<List<Product>> ProductsGetAll()
@@ -80,6 +83,30 @@ namespace OnlineStoreBack.DB.Storages
                     //transaction: transaction,
                     commandType: CommandType.StoredProcedure);
                 return result.FirstOrDefault();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async ValueTask<List<Product>> NobodyBought()
+        {
+            try
+            {
+                var result = await connection.QueryAsync<Product, Category, Product>(
+                    SpName.NobodyBought,
+                    (product, category) =>
+                    {
+                        Product newProduct = product;
+                        newProduct.Category = category;
+                        return newProduct;
+                    },
+                    param: null,
+                    //transaction: transaction,
+                    commandType: CommandType.StoredProcedure,
+                    splitOn: "Id");
+                return result.ToList();
             }
             catch (SqlException ex)
             {
