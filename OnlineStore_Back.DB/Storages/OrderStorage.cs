@@ -29,23 +29,42 @@ namespace OnlineStoreBack.DB.Storages
             public const string OrderWithDetailsGetById = "GetOrderWithDetailsByOrderId";
         }
 
-        public async ValueTask<Order> AddOrder(Order model)
+        public void TransactionStart()
+        {
+            if (connection == null) { connection = new SqlConnection("Data Source=(local);Initial Catalog=SQL_HW_Kostereva;Integrated Security = True;"); }
+            connection.Open();
+            transaction = this.connection.BeginTransaction();
+        }
+
+        public void TransactionCommit()
+        {
+            this.transaction?.Commit();
+            connection?.Close();
+        }
+
+        public void TransactioRollBack()
+        {
+            this.transaction?.Rollback();
+            connection?.Close();
+        }
+
+        public async ValueTask<Order> AddOrder(Order model, decimal rate)
         {
             try
             {
-                DynamicParameters parameters = new DynamicParameters(
-                    new
+                DynamicParameters parameters = new DynamicParameters(new
                     {
                         cityId = model.City.Id
                     });
                 var orderId = await connection.QueryAsync<long>(
                     SpName.OrderAdd,
                     parameters,
+                    transaction: transaction,
                     commandType: CommandType.StoredProcedure);
 
                 model.Id = orderId.FirstOrDefault();
 
-                await AddOrderDetails(model.OrderDetails, model.Id);
+                await AddOrderDetails(model.OrderDetails, model.Id, rate);
                 return await GetOrderWithDetailsByOrderId(model.Id);
             }
             catch (Exception ex)
@@ -54,25 +73,27 @@ namespace OnlineStoreBack.DB.Storages
             }
         }
 
-        public async ValueTask AddOrderDetails(List<Order_Product> orderDetails, long? orderId)
+        public async ValueTask AddOrderDetails(List<Order_Product> orderDetails, long? orderId, decimal rate)
         {
             try
             {
                 foreach (Order_Product item in orderDetails)
                 {
-                    long productId = item.Product.Id;
+                    item.LocalPrice /= rate;
 
+                    long productId = item.Product.Id;
                     DynamicParameters parameters = new DynamicParameters(new
                     {
                         orderId,
                         productId,
                         item.Quantity,
                         item.LocalPrice
-                    });
+                    });;
 
                     await connection.QueryAsync<long>(
                         SpName.OrderDetailsAdd,
                         parameters,
+                        transaction: transaction,
                         commandType: CommandType.StoredProcedure);
                 }
             }
@@ -104,6 +125,7 @@ namespace OnlineStoreBack.DB.Storages
                         return order;
                     },
                     param: new { orderId },
+                    transaction: transaction,
                     commandType: CommandType.StoredProcedure,
                     splitOn: "Id");
                 return result.FirstOrDefault();

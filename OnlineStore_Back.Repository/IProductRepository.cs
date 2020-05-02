@@ -7,6 +7,6 @@ namespace OnlineStoreBack.Repository
     public interface IProductRepository
     {
         ValueTask<RequestResult<List<Product>>> GetAllProducts();
-        ValueTask<RequestResult<City>> GetCityById(long id);
+        ValueTask<RequestResult<List<Product>>> ProductSearch(ProductSearch dataModel);
     }
 }

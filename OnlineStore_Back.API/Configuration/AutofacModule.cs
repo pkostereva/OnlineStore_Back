@@ -17,6 +17,7 @@ namespace OnlineStoreBack.API.Configuration
             builder.RegisterType<ReportRepository>().As<IReportRepository>();
             builder.RegisterType<ProductController>().As<IProductController>();
             builder.RegisterType<ReportController>().As<IReportController>();
+            builder.RegisterType<OrderController>().As<IOrderController>();
             builder.RegisterType<ConfigurationOptions>().As<IConfigurationOptions>();
         }
     }

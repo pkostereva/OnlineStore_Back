@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 
 namespace OnlineStoreBack.API.Models.OutputModels
 {
-    public class Valute
+    public class CityTotalWorthOutputModel
     {
-        public Dictionary<string, object> UAH { get; set; }
-        public Dictionary<string, object> BYN { get; set; }
-        
+        public string Name { get; set; }
+        public decimal Worth { get; set; }
     }
 }

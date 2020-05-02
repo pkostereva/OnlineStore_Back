@@ -10,17 +10,24 @@ namespace OnlineStore_Back.API.Configuration
         public AutomapperProfile()
         {
             CreateMap<Category, CategoryOutputModel>();
-            CreateMap<City, CityOutputModel>();
+            CreateMap<TotalCostByCountry, TotalCostOutputModel>();
+
+            CreateMap<OrderWide, OrderWideOutputModel>()
+                .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.City.Name))
+                .ForMember(dest => dest.Date, opt => opt.MapFrom(src => src.Date.ToString(@"dd.MM.yyyy HH:mm:ss")))
+                .ForMember(dest => dest.Brand, opt => opt.MapFrom(src => src.Product.Brand))
+                .ForMember(dest => dest.Model, opt => opt.MapFrom(src => src.Product.Model))
+                .ForMember(dest => dest.SubCategory, opt => opt.MapFrom(src => src.Product.Category.Name));
+
+            CreateMap<City, MostSoldProductInCityOutputModel>()
+                .ForMember(dest => dest.CityName, opt => opt.MapFrom(src => src.Name))
+                .ForMember(dest => dest.Product, opt => opt.MapFrom(src => src.Product));
 
             CreateMap<Product, ProductOutputModel>()
-                //.ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name))
                 .ForMember(dest => dest.SubCategoryName, opt => opt.MapFrom(src => src.Category.Name));
 
-            //CreateMap<Order_ProductInputModel, Order_Product>()
-            //    .ForPath(dest => dest.Product.Id, opt => opt.MapFrom(src => src.ProductId));
-
             CreateMap<Order, OrderOutputModel>()
-                .ForMember(dest => dest.Date, opt => opt.MapFrom(src => src.Date.ToString(@"dd.MM.yyyy")))
+                .ForMember(dest => dest.Date, opt => opt.MapFrom(src => src.Date.ToString(@"dd.MM.yyyy HH:mm:ss")))
                 .ForMember(dest => dest.CityName, opt => opt.MapFrom(src => src.City.Name))
                 .ForMember(dest => dest.OrderDetails, opt => opt.MapFrom(src => src.OrderDetails));
 
@@ -35,6 +42,15 @@ namespace OnlineStore_Back.API.Configuration
 
             CreateMap<Order_ProductInputModel, Order_Product>()
                 .ForPath(dest => dest.Product.Id, opt => opt.MapFrom(src => src.ProductId));
+
+            CreateMap<ProductSearchInputModel, ProductSearch>();
+
+            CreateMap<CategoryWithProducts, CategoriesWithCountOfProductsOutputModel>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Category.Id))
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Category.Name));
+
+            CreateMap<CityTotalWorth, CityTotalWorthOutputModel>()
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.City.Name));
         }
     }
 }

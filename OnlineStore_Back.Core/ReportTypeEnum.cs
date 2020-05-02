@@ -6,8 +6,8 @@ namespace OnlineStoreBack.Core
 {
     public enum ReportTypeEnum
     {
-        NobodyBought = 1,
-        OrderedNotInCity,
-        InStockNotInCities
+        ProductsNeverOrdered = 1,
+        ProductsInStockButNotInCities,
+        ProductsOrderedButNotInCities
     }
 }

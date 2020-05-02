@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Options;
 using OnlineStoreBack.API.Configuration;
 using OnlineStoreBack.DB.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -21,21 +22,18 @@ namespace OnlineStoreBack.DB.Storages
             this.connection = new SqlConnection(configurationOptions.Value.DBConnectionString);
         }
 
-        public void TransactionStart()
-        {
-            if (connection == null) { connection = new SqlConnection("Data Source=185.26.112.224;Initial Catalog=CrmDb_Restored;User ID=dev;Password=qwe!23;"); }
-            connection.Open();
-            transaction = this.connection.BeginTransaction();
-        }
-
-
         internal static class SpName
         {
             public const string ProductsGetAll = "Products_SelectAll";
-            public const string CityGetById = "City_SelectById";
-            public const string NobodyBought = "NobodyBuy";
+            public const string ProductsSearch = "Product_Search";
         }
 
+        public void TransactionStart()
+        {
+            if (connection == null) { connection = new SqlConnection("Data Source=(local);Initial Catalog=SQL_HW_Kostereva;Integrated Security = True;"); }
+            connection.Open();
+            transaction = this.connection.BeginTransaction();
+        }
 
         public void TransactionCommit()
         {
@@ -62,56 +60,48 @@ namespace OnlineStoreBack.DB.Storages
                         return newProduct;
                     },
                     param: null,
-                    //transaction: transaction,
+                    transaction: transaction,
                     commandType: CommandType.StoredProcedure,
                     splitOn: "Id");
                 return result.ToList();
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
         }
 
-        public async ValueTask<City> CityGetById(long id)
+        public async ValueTask<List<Product>> ProductSearch(ProductSearch dataModel)
         {
             try
             {
-                var result = await connection.QueryAsync<City>(
-                    SpName.CityGetById,
-                    param: new { id },
-                    //transaction: transaction,
-                    commandType: CommandType.StoredProcedure);
-                return result.FirstOrDefault();
-            }
-            catch (SqlException ex)
-            {
-                throw ex;
-            }
-        }
-
-        public async ValueTask<List<Product>> NobodyBought()
-        {
-            try
-            {
+                DynamicParameters parameters = new DynamicParameters(new
+                {
+                    dataModel.Id,
+                    dataModel.Brand,
+                    dataModel.Model,
+                    dataModel.Price,
+                    dataModel.CategoryId,
+                    dataModel.SubCategoryId
+                });
                 var result = await connection.QueryAsync<Product, Category, Product>(
-                    SpName.NobodyBought,
-                    (product, category) =>
+                    SpName.ProductsSearch,
+                    (p, c) =>
                     {
-                        Product newProduct = product;
-                        newProduct.Category = category;
-                        return newProduct;
+                        Product product = p;
+                        product.Category = c;
+                        return product;
                     },
-                    param: null,
-                    //transaction: transaction,
-                    commandType: CommandType.StoredProcedure,
-                    splitOn: "Id");
+                    param: parameters,
+                    transaction: transaction,
+                    commandType: CommandType.StoredProcedure);
                 return result.ToList();
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
         }
+
     }
 }

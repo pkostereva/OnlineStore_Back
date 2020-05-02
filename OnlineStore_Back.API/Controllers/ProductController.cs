@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using OnlineStoreBack.API.Controllers;
+using Newtonsoft.Json.Linq;
 using OnlineStoreBack.API.Models.InputModels;
 using OnlineStoreBack.API.Models.OutputModels;
 using OnlineStoreBack.DB.Models;
@@ -36,29 +36,15 @@ namespace OnlineStoreBack.API.Controllers
             return Problem($"Transaction failed {result.ExMessage}", statusCode: 520);
         }
 
-        [HttpGet("{cityId}")]
-        public async ValueTask<ActionResult<List<ProductOutputModel>>> GetCityById(long cityId)
+        [HttpGet("search")]
+        public async ValueTask<ActionResult<List<ProductOutputModel>>> ProductSearch(ProductSearchInputModel inputModel)
         {
-            {
-                if (cityId < 1) return BadRequest("cityId can not be less than one.");
-                var result = await _productRepository.GetCityById(cityId);
-                if (result.IsOkay)
-                {
-                    if (result.RequestData == null) { return NotFound("City not found"); }
-                    return Ok(_mapper.Map<CityOutputModel>(result.RequestData));
-                }
-                return Problem($"Transaction failed {result.ExMessage}", statusCode: 520);
-            }
-        }
 
-        [HttpPost]
-        public async ValueTask<ActionResult<List<OrderOutputModel>>> AddOrder([FromBody] OrderInputModel inputModel)
-        {
-            var result = await _orderRepository.AddOrder(_mapper.Map<Order>(inputModel));
+            var result = await _productRepository.ProductSearch(_mapper.Map<ProductSearch>(inputModel));
             if (result.IsOkay)
             {
                 if (result.RequestData == null) { return NotFound("City not found"); }
-                return Ok(_mapper.Map<OrderOutputModel>(result.RequestData));
+                return Ok(_mapper.Map<List<ProductOutputModel>>(result.RequestData));
             }
             return Problem($"Transaction failed {result.ExMessage}", statusCode: 520);
         }

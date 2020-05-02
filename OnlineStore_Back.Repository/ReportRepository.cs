@@ -1,13 +1,8 @@
-﻿using Newtonsoft.Json.Linq;
-using OnlineStoreBack.Core;
+﻿using OnlineStoreBack.Core;
 using OnlineStoreBack.DB.Models;
 using OnlineStoreBack.DB.Storages;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Net;
-using System.Text;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace OnlineStoreBack.Repository
@@ -20,39 +15,111 @@ namespace OnlineStoreBack.Repository
             _reportStorage = reportStorage;
         }
 
-        public async ValueTask<RequestResult<List<Product>>> CallReport(ReportTypeEnum type)
+        public async ValueTask<RequestResult<List<CityTotalWorth>>> GetTotalWorthByCity()
         {
-            var result = new RequestResult<List<Product>>();
+            var result = new RequestResult<List<CityTotalWorth>>();
             try
             {
-                //_orderStorage.TransactionStart();
-                result.RequestData = await _reportStorage.GetProduct(type);
-                //_leadStorage.TransactionCommit();
+                _reportStorage.TransactionStart();
+                result.RequestData = await _reportStorage.GetTotalWorthByCity();
+                _reportStorage.TransactionCommit();
                 result.IsOkay = true;
             }
             catch (Exception ex)
             {
-                //_orderStorage.TransactioRollBack();
+                _reportStorage.TransactioRollBack();
                 result.ExMessage = ex.Message;
             }
             return result;
         }
 
-        public async ValueTask<string> SendingRequest()
+        public async ValueTask<RequestResult<List<OrderWide>>> GetOrdersByTimeSpan(DateTime start, DateTime end)
         {
-            WebRequest request = WebRequest.CreateHttp("https://www.cbr-xml-daily.ru/daily_json.js");
-            Stream dataStream;
-            WebResponse response = await request.GetResponseAsync();
-            string result;
-            using (dataStream = response.GetResponseStream())
+            var result = new RequestResult<List<OrderWide>>();
+            try
             {
-                StreamReader reader = new StreamReader(dataStream);
-                result = reader.ReadToEnd();
+                _reportStorage.TransactionStart();
+                result.RequestData = await _reportStorage.GetOrdersByTimeSpan(start, end);
+                _reportStorage.TransactionCommit();
+                result.IsOkay = true;
             }
-            response.Close();
+            catch (Exception ex)
+            {
+                _reportStorage.TransactioRollBack();
+                result.ExMessage = ex.Message;
+            }
+            return result;
+        }
 
-            
+        public async ValueTask<RequestResult<List<City>>> GetMostSoldProductInCities()
+        {
+            var result = new RequestResult<List<City>>();
+            try
+            {
+                _reportStorage.TransactionStart();
+                result.RequestData = await _reportStorage.GetMostSoldProductInCities();
+                _reportStorage.TransactionCommit();
+                result.IsOkay = true;
+            }
+            catch (Exception ex)
+            {
+                _reportStorage.TransactioRollBack();
+                result.ExMessage = ex.Message;
+            }
+            return result;
+        }
 
+        public async ValueTask<RequestResult<List<Product>>> GetFilteredProducts(ReportTypeEnum type)
+        {
+            var result = new RequestResult<List<Product>>();
+            try
+            {
+                _reportStorage.TransactionStart();
+                result.RequestData = await _reportStorage.GetFilteredProducts(type);
+                _reportStorage.TransactionCommit();
+                result.IsOkay = true;
+            }
+            catch (Exception ex)
+            {
+                _reportStorage.TransactioRollBack();
+                result.ExMessage = ex.Message;
+            }
+            return result;
+        }
+
+        public async ValueTask<RequestResult<List<CategoryWithProducts>>> GetCategoriesWithFiveAndMoreProducts()
+        {
+            var result = new RequestResult<List<CategoryWithProducts>>();
+            try
+            {
+                _reportStorage.TransactionStart();
+                result.RequestData = await _reportStorage.GetCategoriesWithFiveAndMoreProducts();
+                _reportStorage.TransactionCommit();
+                result.IsOkay = true;
+            }
+            catch (Exception ex)
+            {
+                _reportStorage.TransactioRollBack();
+                result.ExMessage = ex.Message;
+            }
+            return result;
+        }
+
+        public async ValueTask<RequestResult<TotalCostByCountry>> GetTotalCostByCountry()
+        {
+            var result = new RequestResult<TotalCostByCountry>();
+            try
+            {
+                _reportStorage.TransactionStart();
+                result.RequestData = await _reportStorage.GetTotalCostByCountry();
+                _reportStorage.TransactionCommit();
+                result.IsOkay = true;
+            }
+            catch (Exception ex)
+            {
+                _reportStorage.TransactioRollBack();
+                result.ExMessage = ex.Message;
+            }
             return result;
         }
     }

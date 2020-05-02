@@ -31,12 +31,12 @@ namespace OnlineStoreBack.Repository
             return result;
         }
 
-        public async ValueTask<RequestResult<City>> GetCityById(long id)
+        public async ValueTask<RequestResult<List<Product>>> ProductSearch(ProductSearch dataModel)
         {
-            var result = new RequestResult<City>();
+            var result = new RequestResult<List<Product>>();
             try
             {
-                result.RequestData = await _productStorage.CityGetById(id);
+                result.RequestData = await _productStorage.ProductSearch(dataModel);
                 result.IsOkay = true;
             }
             catch (Exception ex)
