@@ -25,17 +25,21 @@ namespace OnlineStoreBack.Repository
                 decimal curCurrency = 1;
                 switch (dataModel.City.Id)
                 {
-                    case (int?)CountryEnum.Ukraine:
+                    case (int?)CityEnum.Kiev:
                         path = "UAH";
                         curCurrency = await CurrentCurrency.GetCurrency(path);
                         break;
-                    case (int?)CountryEnum.Belarus:
+                    case (int?)CityEnum.Minsk:
                         path = "BYN";
                         curCurrency = await CurrentCurrency.GetCurrency(path);
                         break;
                 }
+                foreach (var item in dataModel.OrderDetails)
+                {
+                    item.LocalPrice /= curCurrency;
+                }
                 _orderStorage.TransactionStart();
-                result.RequestData = await _orderStorage.AddOrder(dataModel, curCurrency);
+                result.RequestData = await _orderStorage.AddOrder(dataModel);
                 _orderStorage.TransactionCommit();
                 result.IsOkay = true;
             }

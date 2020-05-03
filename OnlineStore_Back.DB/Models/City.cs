@@ -1,4 +1,5 @@
-﻿namespace OnlineStoreBack.DB.Models
+﻿
+namespace OnlineStoreBack.DB.Models
 {
     public class City
     {

@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json.Linq;
 using OnlineStoreBack.API.Models.InputModels;
 using OnlineStoreBack.API.Models.OutputModels;
 using OnlineStoreBack.DB.Models;
@@ -16,24 +15,10 @@ namespace OnlineStoreBack.API.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IProductRepository _productRepository;
-        private readonly IOrderRepository _orderRepository;
-        public ProductController(IProductRepository productRepository, IOrderRepository orderRepository, IMapper mapper)
+        public ProductController(IProductRepository productRepository, IMapper mapper)
         {
             _productRepository = productRepository;
-            _orderRepository = orderRepository;
             _mapper = mapper;
-        }
-
-        [HttpGet]
-        public async ValueTask<ActionResult<List<ProductOutputModel>>> GetAllProducts()
-        {
-            var result = await _productRepository.GetAllProducts();
-            if (result.IsOkay)
-            {
-                if (result.RequestData == null) { return NotFound("Products not found"); }
-                return Ok(_mapper.Map<List<ProductOutputModel>>(result.RequestData));
-            }
-            return Problem($"Transaction failed {result.ExMessage}", statusCode: 520);
         }
 
         [HttpGet("search")]
@@ -43,7 +28,7 @@ namespace OnlineStoreBack.API.Controllers
             var result = await _productRepository.ProductSearch(_mapper.Map<ProductSearch>(inputModel));
             if (result.IsOkay)
             {
-                if (result.RequestData == null) { return NotFound("City not found"); }
+                if (result.RequestData == null) { return NotFound("Products not found"); }
                 return Ok(_mapper.Map<List<ProductOutputModel>>(result.RequestData));
             }
             return Problem($"Transaction failed {result.ExMessage}", statusCode: 520);

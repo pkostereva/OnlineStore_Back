@@ -6,8 +6,8 @@ namespace OnlineStoreBack.DB.Storages
 {
     public interface IOrderStorage
     {
-        ValueTask<Order> AddOrder(Order model, decimal excRate);
-        ValueTask AddOrderDetails(List<Order_Product> orderDetails, long? orderId, decimal excRate);
+        ValueTask<Order> AddOrder(Order model);
+        ValueTask AddOrderDetails(List<Order_Product> orderDetails, long? orderId);
         ValueTask<Order> GetOrderWithDetailsByOrderId(long? id);
         void TransactionCommit();
         void TransactionStart();

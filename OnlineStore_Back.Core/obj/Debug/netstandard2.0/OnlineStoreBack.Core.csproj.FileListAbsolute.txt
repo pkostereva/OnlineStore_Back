@@ -6,4 +6,3 @@ D:\github\DevEducation\HW_Kostereva\OnlineStore_Back\OnlineStore_Back.Core\obj\D
 D:\github\DevEducation\HW_Kostereva\OnlineStore_Back\OnlineStore_Back.Core\obj\Debug\netstandard2.0\OnlineStoreBack.Core.AssemblyInfo.cs
 D:\github\DevEducation\HW_Kostereva\OnlineStore_Back\OnlineStore_Back.Core\obj\Debug\netstandard2.0\OnlineStoreBack.Core.dll
 D:\github\DevEducation\HW_Kostereva\OnlineStore_Back\OnlineStore_Back.Core\obj\Debug\netstandard2.0\OnlineStoreBack.Core.pdb
-D:\github\DevEducation\HW_Kostereva\OnlineStore_Back\OnlineStore_Back.Core\obj\Debug\netstandard2.0\OnlineStoreBack.Core.csprojAssemblyReference.cache

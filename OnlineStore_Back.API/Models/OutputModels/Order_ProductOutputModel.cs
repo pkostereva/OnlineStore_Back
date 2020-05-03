@@ -1,4 +1,5 @@
-﻿namespace OnlineStoreBack.API.Models.OutputModels
+﻿
+namespace OnlineStoreBack.API.Models.OutputModels
 {
     public class Order_ProductOutputModel
     {

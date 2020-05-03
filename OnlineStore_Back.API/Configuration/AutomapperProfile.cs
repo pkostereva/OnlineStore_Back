@@ -9,15 +9,14 @@ namespace OnlineStore_Back.API.Configuration
     {
         public AutomapperProfile()
         {
-            CreateMap<Category, CategoryOutputModel>();
             CreateMap<TotalCostByCountry, TotalCostOutputModel>();
 
-            CreateMap<OrderWide, OrderWideOutputModel>()
+            CreateMap<OrderByTimeSpan, OrderByTimeSpanOutputModel>()
                 .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.City.Name))
                 .ForMember(dest => dest.Date, opt => opt.MapFrom(src => src.Date.ToString(@"dd.MM.yyyy HH:mm:ss")))
                 .ForMember(dest => dest.Brand, opt => opt.MapFrom(src => src.Product.Brand))
                 .ForMember(dest => dest.Model, opt => opt.MapFrom(src => src.Product.Model))
-                .ForMember(dest => dest.SubCategory, opt => opt.MapFrom(src => src.Product.Category.Name));
+                .ForMember(dest => dest.SubCategory, opt => opt.MapFrom(src => src.Category.Name));
 
             CreateMap<City, MostSoldProductInCityOutputModel>()
                 .ForMember(dest => dest.CityName, opt => opt.MapFrom(src => src.Name))

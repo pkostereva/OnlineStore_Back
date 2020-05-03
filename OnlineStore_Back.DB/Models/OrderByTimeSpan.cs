@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace OnlineStoreBack.DB.Models
 {
     public class OrderByTimeSpan
     {
-        public Order Order { get; set; }
+        public long? Id { get; set; }
+        public DateTime Date { get; set; }
         public City City { get; set; }
         public int TotalQuantity { get; set; }
         public decimal TotalCost { get; set; }

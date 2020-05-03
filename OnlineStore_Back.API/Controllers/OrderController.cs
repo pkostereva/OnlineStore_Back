@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineStoreBack.API.Models.InputModels;
 using OnlineStoreBack.API.Models.OutputModels;
@@ -25,12 +22,20 @@ namespace OnlineStoreBack.API.Controllers
         }
 
         [HttpPost]
-        public async ValueTask<ActionResult<List<OrderOutputModel>>> AddOrder([FromBody] OrderInputModel inputModel)
+        public async ValueTask<ActionResult<List<OrderOutputModel>>> AddOrder(OrderInputModel inputModel)
         {
+            if (inputModel.CityId == (int)CityEnum.Storage)
+            {
+                return BadRequest($"This CityId = {inputModel.CityId} is not available");
+            }
+            if (inputModel == null)
+            {
+                return BadRequest("Enter correct data!");
+            }
             var result = await _orderRepository.AddOrder(_mapper.Map<Order>(inputModel));
             if (result.IsOkay)
             {
-                if (result.RequestData == null) { return NotFound("City not found"); }
+                if (result.RequestData == null) { return BadRequest("Something goes wrong"); }
                 return Ok(_mapper.Map<OrderOutputModel>(result.RequestData));
             }
             return Problem($"Transaction failed {result.ExMessage}", statusCode: 520);

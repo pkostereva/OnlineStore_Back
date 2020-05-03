@@ -20,32 +20,26 @@ namespace OnlineStoreBack.Repository
             var result = new RequestResult<List<CityTotalWorth>>();
             try
             {
-                _reportStorage.TransactionStart();
                 result.RequestData = await _reportStorage.GetTotalWorthByCity();
-                _reportStorage.TransactionCommit();
                 result.IsOkay = true;
             }
             catch (Exception ex)
             {
-                _reportStorage.TransactioRollBack();
                 result.ExMessage = ex.Message;
             }
             return result;
         }
 
-        public async ValueTask<RequestResult<List<OrderWide>>> GetOrdersByTimeSpan(DateTime start, DateTime end)
+        public async ValueTask<RequestResult<List<OrderByTimeSpan>>> GetOrdersByTimeSpan(DateTime start, DateTime end)
         {
-            var result = new RequestResult<List<OrderWide>>();
+            var result = new RequestResult<List<OrderByTimeSpan>>();
             try
             {
-                _reportStorage.TransactionStart();
                 result.RequestData = await _reportStorage.GetOrdersByTimeSpan(start, end);
-                _reportStorage.TransactionCommit();
                 result.IsOkay = true;
             }
             catch (Exception ex)
             {
-                _reportStorage.TransactioRollBack();
                 result.ExMessage = ex.Message;
             }
             return result;
@@ -56,14 +50,11 @@ namespace OnlineStoreBack.Repository
             var result = new RequestResult<List<City>>();
             try
             {
-                _reportStorage.TransactionStart();
                 result.RequestData = await _reportStorage.GetMostSoldProductInCities();
-                _reportStorage.TransactionCommit();
                 result.IsOkay = true;
             }
             catch (Exception ex)
             {
-                _reportStorage.TransactioRollBack();
                 result.ExMessage = ex.Message;
             }
             return result;
@@ -74,14 +65,11 @@ namespace OnlineStoreBack.Repository
             var result = new RequestResult<List<Product>>();
             try
             {
-                _reportStorage.TransactionStart();
                 result.RequestData = await _reportStorage.GetFilteredProducts(type);
-                _reportStorage.TransactionCommit();
                 result.IsOkay = true;
             }
             catch (Exception ex)
             {
-                _reportStorage.TransactioRollBack();
                 result.ExMessage = ex.Message;
             }
             return result;
@@ -92,14 +80,11 @@ namespace OnlineStoreBack.Repository
             var result = new RequestResult<List<CategoryWithProducts>>();
             try
             {
-                _reportStorage.TransactionStart();
                 result.RequestData = await _reportStorage.GetCategoriesWithFiveAndMoreProducts();
-                _reportStorage.TransactionCommit();
                 result.IsOkay = true;
             }
             catch (Exception ex)
             {
-                _reportStorage.TransactioRollBack();
                 result.ExMessage = ex.Message;
             }
             return result;
@@ -110,14 +95,11 @@ namespace OnlineStoreBack.Repository
             var result = new RequestResult<TotalCostByCountry>();
             try
             {
-                _reportStorage.TransactionStart();
                 result.RequestData = await _reportStorage.GetTotalCostByCountry();
-                _reportStorage.TransactionCommit();
                 result.IsOkay = true;
             }
             catch (Exception ex)
             {
-                _reportStorage.TransactioRollBack();
                 result.ExMessage = ex.Message;
             }
             return result;

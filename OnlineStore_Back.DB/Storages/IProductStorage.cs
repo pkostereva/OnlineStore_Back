@@ -8,9 +8,5 @@ namespace OnlineStoreBack.DB.Storages
     {
         ValueTask<List<Product>> ProductsGetAll();
         ValueTask<List<Product>> ProductSearch(ProductSearch dataModel);
-
-        void TransactionCommit();
-        void TransactionStart();
-        void TransactioRollBack();
     }
 }

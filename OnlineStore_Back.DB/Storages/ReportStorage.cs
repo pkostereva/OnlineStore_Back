@@ -16,8 +16,6 @@ namespace OnlineStoreBack.DB.Storages
     {
         private IDbConnection connection;
 
-        private IDbTransaction transaction;
-
         public ReportStorage(IOptions<ConfigurationOptions> configurationOptions)
         {
             this.connection = new SqlConnection(configurationOptions.Value.DBConnectionString);
@@ -35,25 +33,6 @@ namespace OnlineStoreBack.DB.Storages
             public const string TotalCostByCountry = "GetTotalIncomeRuAndForeign";
         }
 
-        public void TransactionStart()
-        {
-            if (connection == null) { connection = new SqlConnection("Data Source=(local);Initial Catalog=SQL_HW_Kostereva;Integrated Security = True;"); }
-            connection.Open();
-            transaction = this.connection.BeginTransaction();
-        }
-
-        public void TransactionCommit()
-        {
-            this.transaction?.Commit();
-            connection?.Close();
-        }
-
-        public void TransactioRollBack()
-        {
-            this.transaction?.Rollback();
-            connection?.Close();
-        }
-
         public async ValueTask<List<CityTotalWorth>> GetTotalWorthByCity()
         {
             try
@@ -67,7 +46,6 @@ namespace OnlineStoreBack.DB.Storages
                         return totalWorth;
                     },
                     param: null,
-                    transaction: transaction,
                     commandType: CommandType.StoredProcedure,
                     splitOn: "Money");
                 return result.ToList();
@@ -78,24 +56,23 @@ namespace OnlineStoreBack.DB.Storages
             }
         }
 
-        public async ValueTask<List<OrderWide>> GetOrdersByTimeSpan(DateTime start, DateTime end)
+        public async ValueTask<List<OrderByTimeSpan>> GetOrdersByTimeSpan(DateTime start, DateTime end)
         {
             try
             {
-                var result = await connection.QueryAsync<OrderWide, City, int, decimal, Product, Category, OrderWide>(
+                var result = await connection.QueryAsync<OrderByTimeSpan, City, int, decimal, Product, Category, OrderByTimeSpan>(
                     SpName.OrdersByTimeSpan,
                     (o, c, tq, tc, p, cat) =>
                     {
-                        OrderWide order = o;
+                        OrderByTimeSpan order = o;
                         o.City = c;
                         o.TotalQuantity = tq;
                         o.TotalCost = tc;
                         o.Product = p;
-                        o.Product.Category = cat;
+                        o.Category = cat;
                         return order;
                     },
                     param: new { start, end },
-                    transaction: transaction,
                     commandType: CommandType.StoredProcedure,
                     splitOn: "Id, TotalQuantity, TotalCost, Id, Id");
                 return result.ToList();
@@ -118,7 +95,6 @@ namespace OnlineStoreBack.DB.Storages
                         return city;
                     },
                     param: null,
-                    transaction: transaction,
                     commandType: CommandType.StoredProcedure,
                     splitOn: "Product");
                 return result.ToList();
@@ -155,7 +131,6 @@ namespace OnlineStoreBack.DB.Storages
                         return newProduct;
                     },
                     param: null,
-                    transaction: transaction,
                     commandType: CommandType.StoredProcedure,
                     splitOn: "Id");
                 return result.ToList();
@@ -179,7 +154,6 @@ namespace OnlineStoreBack.DB.Storages
                         return category;
                     },
                     param: null,
-                    transaction: transaction,
                     commandType: CommandType.StoredProcedure,
                     splitOn: "CountOfProducts");
                 return result.ToList();
@@ -197,7 +171,6 @@ namespace OnlineStoreBack.DB.Storages
                 var result = await connection.QueryAsync<TotalCostByCountry>(
                     SpName.TotalCostByCountry,
                     param: null,
-                    transaction: transaction,
                     commandType: CommandType.StoredProcedure);
                 return result.FirstOrDefault();
             }

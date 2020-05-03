@@ -9,7 +9,7 @@ namespace OnlineStoreBack.API.Controllers
     public interface IReportController
     {
         ValueTask<ActionResult<List<CityTotalWorthOutputModel>>> GetTotalWorthByCity();
-        ValueTask<ActionResult<List<OrderWideOutputModel>>> GetOrdersByTimeSpan(DatesInputModel model);
+        ValueTask<ActionResult<List<OrderByTimeSpanOutputModel>>> GetOrdersByTimeSpan(DatesInputModel model);
         ValueTask<ActionResult<List<MostSoldProductInCityOutputModel>>> GetMostSoldProductInCities();
         ValueTask<ActionResult<List<ProductOutputModel>>> GetProductsInStockNotInCities();
         ValueTask<ActionResult<List<ProductOutputModel>>> GetProductsOrderedButNotInCities();

@@ -1,5 +1,4 @@
-﻿using OnlineStoreBack.DB.Models;
-
+﻿
 namespace OnlineStoreBack.DB.Models
 {
     public class Order_Product

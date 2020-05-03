@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
+﻿
 namespace OnlineStoreBack.API.Models.OutputModels
 {
-    public class OrderWideOutputModel
+    public class OrderByTimeSpanOutputModel
     {
         public long Id { get; set; }
         public string Date { get; set; }

@@ -19,5 +19,9 @@
     <ProjectReference Include="..\OnlineStore_Back.Repository\OnlineStoreBack.Repository.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\img\" />
+  </ItemGroup>
+
 
 </Project>

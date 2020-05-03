@@ -1,4 +1,3 @@
 {
-  "OnlineStoreBackApiUrl": "https://localhost:5101",
   "DBConnectionString": "Data Source=(local);Initial Catalog=SQL_HW_Kostereva;Integrated Security = True;"
 }

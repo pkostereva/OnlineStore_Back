@@ -31,7 +31,6 @@ namespace OnlineStoreBack.DB.Storages
 
         public void TransactionStart()
         {
-            if (connection == null) { connection = new SqlConnection("Data Source=(local);Initial Catalog=SQL_HW_Kostereva;Integrated Security = True;"); }
             connection.Open();
             transaction = this.connection.BeginTransaction();
         }
@@ -48,7 +47,7 @@ namespace OnlineStoreBack.DB.Storages
             connection?.Close();
         }
 
-        public async ValueTask<Order> AddOrder(Order model, decimal rate)
+        public async ValueTask<Order> AddOrder(Order model)
         {
             try
             {
@@ -64,7 +63,7 @@ namespace OnlineStoreBack.DB.Storages
 
                 model.Id = orderId.FirstOrDefault();
 
-                await AddOrderDetails(model.OrderDetails, model.Id, rate);
+                await AddOrderDetails(model.OrderDetails, model.Id);
                 return await GetOrderWithDetailsByOrderId(model.Id);
             }
             catch (Exception ex)
@@ -73,14 +72,12 @@ namespace OnlineStoreBack.DB.Storages
             }
         }
 
-        public async ValueTask AddOrderDetails(List<Order_Product> orderDetails, long? orderId, decimal rate)
+        public async ValueTask AddOrderDetails(List<Order_Product> orderDetails, long? orderId)
         {
             try
             {
                 foreach (Order_Product item in orderDetails)
                 {
-                    item.LocalPrice /= rate;
-
                     long productId = item.Product.Id;
                     DynamicParameters parameters = new DynamicParameters(new
                     {

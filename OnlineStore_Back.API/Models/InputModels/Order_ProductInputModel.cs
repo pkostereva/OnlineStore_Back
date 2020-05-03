@@ -1,4 +1,5 @@
-﻿namespace OnlineStoreBack.API.Models.InputModels
+﻿
+namespace OnlineStoreBack.API.Models.InputModels
 {
     public class Order_ProductInputModel
     {

@@ -15,8 +15,6 @@ namespace OnlineStoreBack.DB.Storages
     {
         private IDbConnection connection;
 
-        private IDbTransaction transaction;
-
         public ProductStorage(IOptions<ConfigurationOptions> configurationOptions)
         {
             this.connection = new SqlConnection(configurationOptions.Value.DBConnectionString);
@@ -26,25 +24,6 @@ namespace OnlineStoreBack.DB.Storages
         {
             public const string ProductsGetAll = "Products_SelectAll";
             public const string ProductsSearch = "Product_Search";
-        }
-
-        public void TransactionStart()
-        {
-            if (connection == null) { connection = new SqlConnection("Data Source=(local);Initial Catalog=SQL_HW_Kostereva;Integrated Security = True;"); }
-            connection.Open();
-            transaction = this.connection.BeginTransaction();
-        }
-
-        public void TransactionCommit()
-        {
-            this.transaction?.Commit();
-            connection?.Close();
-        }
-
-        public void TransactioRollBack()
-        {
-            this.transaction?.Rollback();
-            connection?.Close();
         }
 
         public async ValueTask<List<Product>> ProductsGetAll()
@@ -60,7 +39,6 @@ namespace OnlineStoreBack.DB.Storages
                         return newProduct;
                     },
                     param: null,
-                    transaction: transaction,
                     commandType: CommandType.StoredProcedure,
                     splitOn: "Id");
                 return result.ToList();
@@ -93,7 +71,6 @@ namespace OnlineStoreBack.DB.Storages
                         return product;
                     },
                     param: parameters,
-                    transaction: transaction,
                     commandType: CommandType.StoredProcedure);
                 return result.ToList();
             }
